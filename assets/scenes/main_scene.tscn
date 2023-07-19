@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqtuwx6fpyvx"]
+
+[ext_resource type="PackedScene" uid="uid://0pydxxwsnine" path="res://assets/scenes/board.tscn" id="1_bwvsc"]
+[ext_resource type="Script" path="res://assets/scenes/figures.gd" id="3_5s0ug"]
+[ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="3_l7oqi"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Board" parent="." instance=ExtResource("1_bwvsc")]
+
+[node name="Figures" type="Node2D" parent="."]
+script = ExtResource("3_5s0ug")
+
+[node name="Figure" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_l7oqi")
+hframes = 6
+vframes = 2
