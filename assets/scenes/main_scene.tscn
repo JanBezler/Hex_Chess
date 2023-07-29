@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://0pydxxwsnine" path="res://assets/scenes/board.tscn" id="1_bwvsc"]
 [ext_resource type="Script" path="res://assets/scripts/figures.gd" id="2_ycgru"]
-[ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="3_l7oqi"]
+[ext_resource type="Script" path="res://assets/scripts/game_state.gd" id="3_y0vha"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -14,8 +14,5 @@ zoom = Vector2(0.5, 0.5)
 [node name="Figures" type="Node2D" parent="."]
 script = ExtResource("2_ycgru")
 
-[node name="Figure" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_l7oqi")
-hframes = 6
-vframes = 2
+[node name="Game_state" type="Node" parent="."]
+script = ExtResource("3_y0vha")
