@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlvfdf1xlvyhw"]
+
+[ext_resource type="Script" path="res://assets/scripts/exit_button.gd" id="1_2fgvd"]
+[ext_resource type="Script" path="res://assets/scripts/play_button.gd" id="1_b6yxb"]
+[ext_resource type="Texture2D" uid="uid://r80u3cnot87l" path="res://assets/images/icon.svg" id="3_7bemr"]
+
+[sub_resource type="SystemFont" id="SystemFont_eromm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhd5g"]
+font = SubResource("SystemFont_eromm")
+font_size = 80
+font_color = Color(0.0235294, 0.172549, 0.121569, 1)
+
+[node name="Main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Title" type="Label" parent="Node"]
+offset_left = 760.0
+offset_top = 392.0
+offset_right = 1162.0
+offset_bottom = 505.0
+text = "HEX Chess"
+label_settings = SubResource("LabelSettings_lhd5g")
+
+[node name="Exit" type="Button" parent="Node"]
+offset_left = 832.0
+offset_top = 744.0
+offset_right = 1180.0
+offset_bottom = 845.0
+scale = Vector2(0.735354, 0.735354)
+theme_override_font_sizes/font_size = 68
+text = "Exit"
+script = ExtResource("1_2fgvd")
+
+[node name="Play" type="Button" parent="Node"]
+offset_left = 832.0
+offset_top = 592.0
+offset_right = 1180.0
+offset_bottom = 693.0
+scale = Vector2(0.735354, 0.735354)
+theme_override_font_sizes/font_size = 68
+text = "Play"
+script = ExtResource("1_b6yxb")
+
+[node name="Camera2D" type="Camera2D" parent="Node"]
+position = Vector2(960, 544)
+
+[node name="Icon" type="Sprite2D" parent="Node"]
+position = Vector2(952, 232)
+texture = ExtResource("3_7bemr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1936.0
+offset_bottom = 1096.0
+color = Color(0.239216, 0.439216, 0.184314, 1)
+
+[connection signal="pressed" from="Node/Exit" to="Node/Exit" method="_on_pressed"]
+[connection signal="pressed" from="Node/Play" to="Node/Play" method="_on_pressed"]
