@@ -45,7 +45,7 @@ func create_border(radius: float, coords: Vector2) -> Line2D:
 	line.add_point(Vector2(-radius/2, height))
 	line.add_point(Vector2(0, height))
 	line.translate(coords)
-	line.default_color = Color(0.596078, 0.984314, 0.596078, 0.5)
+	line.default_color = Color(0.996078, 0.984314, 0.196078, 0.5)
 	line.width = 20
 	line.texture = line_texture
 	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH

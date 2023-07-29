@@ -65,3 +65,30 @@ static func field_down_right(field: String) -> String:
 static func field_down_left(field: String) -> String:
 	var kv := to_kv(field)
 	return return_existing(char_down(kv[0]) + str(kv[1]))
+	
+
+static func field_diag_right(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_up(char_up(kv[0])) + str(kv[1] + 2))
+	
+static func field_diag_up_right(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_up(kv[0]) + str(kv[1] + 3))
+	
+static func field_diag_up_left(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_down(kv[0]) + str(kv[1] + 2))
+	
+static func field_diag_left(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_down(char_down(kv[0])) + str(kv[1]))
+	
+static func field_diag_down_right(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_up(kv[0]) + str(kv[1]))
+	
+static func field_diag_down_left(field: String) -> String:
+	var kv := to_kv(field)
+	return return_existing(char_down(kv[0]) + str(kv[1] - 1))
+	
+	
