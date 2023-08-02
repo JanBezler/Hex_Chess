@@ -1,6 +1,10 @@
 extends Node2D
 class_name Board
 
+@export var background: ColorRect
+@export var color_white: Color
+@export var color_black: Color
+
 var board := [
 	{"A":Vector2(0,0),"B":Vector2(0,0),"C":Vector2(0,0),"D":Vector2(0,0),"E":Vector2(0,0),"F":Vector2(0,0)},
 	{"A":Vector2(0,0),"B":Vector2(0,0),"C":Vector2(0,0),"D":Vector2(0,0),"E":Vector2(0,0),"F":Vector2(0,0),"G":Vector2(0,0)},
@@ -53,6 +57,13 @@ func which_field_clicked(coords: Vector2) -> String:
 			if coords.distance_to(board[row][col]) < height:
 				return col+str(row+1)
 	return ""
+
+func set_background_color(to_black: bool):
+	if to_black:
+		background.color = color_black
+	else:
+		background.color = color_white
+	
 				
 	
 

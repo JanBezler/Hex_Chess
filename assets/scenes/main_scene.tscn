@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqtuwx6fpyvx"]
+[gd_scene load_steps=6 format=3 uid="uid://dqtuwx6fpyvx"]
 
 [ext_resource type="PackedScene" uid="uid://0pydxxwsnine" path="res://assets/scenes/board.tscn" id="1_bwvsc"]
 [ext_resource type="Script" path="res://assets/scripts/figures.gd" id="2_ycgru"]
+[ext_resource type="Texture2D" uid="uid://f3j6de0el2in" path="res://assets/textures/center_linear_gradient.tres" id="3_bbqgy"]
 [ext_resource type="Script" path="res://assets/scripts/game_state.gd" id="3_y0vha"]
+[ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="4_fipi1"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -10,9 +12,16 @@
 zoom = Vector2(0.5, 0.5)
 
 [node name="Board" parent="." instance=ExtResource("1_bwvsc")]
+color_white = Color(0.72549, 0.72549, 0.72549, 1)
+color_black = Color(0.20871, 0.20871, 0.20871, 1)
 
-[node name="Figures" type="Node2D" parent="."]
+[node name="Figures" type="Node2D" parent="." node_paths=PackedStringArray("board")]
 script = ExtResource("2_ycgru")
+board = NodePath("../Board")
+line_texture = ExtResource("3_bbqgy")
+figure_sprite = ExtResource("4_fipi1")
 
-[node name="Game_state" type="Node" parent="."]
+[node name="Game_state" type="Node" parent="." node_paths=PackedStringArray("board", "figures")]
 script = ExtResource("3_y0vha")
+board = NodePath("../Board")
+figures = NodePath("../Figures")

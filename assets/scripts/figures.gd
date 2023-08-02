@@ -1,11 +1,41 @@
 extends Node2D
 class_name Figures
 
-var line_texture := preload("res://assets/textures/center_linear_gradient.tres")
-var figure_sprite := preload("res://assets/images/figures.png")
+@export var board: Board
+@export var marker_color: Color
+@export var line_texture: Texture2D
+@export var figure_sprite: Texture2D
 
-func _ready():
-	pass
+var figure_sprites_parent := Node2D.new()
+var marker_sprites_parent := Node2D.new()
+
+func draw_figures(state_table: Array):
+	var new_sprites_parent := Node2D.new()
+
+	var row_num := 1
+	for row in state_table:
+		for key in row:
+			var fig = row[key]
+			if fig != "":
+				var sprite = get_figure_sprite(fig)
+				sprite.position = board.get_field_position(key, row_num)
+				new_sprites_parent.add_child(sprite)
+		row_num += 1
+		
+	figure_sprites_parent.queue_free()
+	add_child(new_sprites_parent)
+	figure_sprites_parent = new_sprites_parent
+	
+func draw_markers(fields: Array):
+	var new_sprites_parent := Node2D.new()
+	for field in fields:
+		var marker = create_marker(70)
+		marker.translate(board.get_field_position(field))
+		new_sprites_parent.add_child(marker)
+		
+	marker_sprites_parent.queue_free()
+	add_child(new_sprites_parent)
+	marker_sprites_parent = new_sprites_parent
 
 func get_figure_sprite(fig_name: String) -> Sprite2D:
 	var frame_num := 0
@@ -33,7 +63,7 @@ func get_figure_sprite(fig_name: String) -> Sprite2D:
 	sprite.frame = frame_num
 	return sprite
 
-func create_border(radius: float, coords: Vector2) -> Line2D:
+func create_marker(radius: float) -> Line2D:
 	var height = radius*sqrt(3)/2
 	var line = Line2D.new()
 	line.add_point(Vector2(0, height))
@@ -44,7 +74,6 @@ func create_border(radius: float, coords: Vector2) -> Line2D:
 	line.add_point(Vector2(-radius, 0))
 	line.add_point(Vector2(-radius/2, height))
 	line.add_point(Vector2(0, height))
-	line.translate(coords)
 	line.default_color = Color(0.996078, 0.984314, 0.196078, 0.5)
 	line.width = 20
 	line.texture = line_texture

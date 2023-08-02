@@ -19,8 +19,9 @@ sources/1 = SubResource("TileSetAtlasSource_nnjg3")
 [sub_resource type="LabelSettings" id="LabelSettings_hf0oi"]
 font_size = 18
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("background")]
 script = ExtResource("1_6c6ey")
+background = NodePath("Polygon2D/ColorRect")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(50, 348)
@@ -35,6 +36,15 @@ z_index = -1
 scale = Vector2(2.6, 2.6)
 color = Color(0.12549, 0.156863, 0.2, 1)
 polygon = PackedVector2Array(0, -432, -376, -216, -376, 216, 0, 432, 376, 216, 376, -216)
+
+[node name="ColorRect" type="ColorRect" parent="Polygon2D"]
+show_behind_parent = true
+custom_minimum_size = Vector2(3840, 2160)
+offset_left = -1959.62
+offset_top = 1335.0
+offset_right = 1880.38
+offset_bottom = 3495.0
+scale = Vector2(1, -1.20645)
 
 [node name="Labels" type="Node2D" parent="."]
 z_index = 1

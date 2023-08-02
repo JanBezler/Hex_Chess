@@ -1,4 +1,3 @@
-extends Resource
 class_name Utils
 
 static var all_fields := ["A1","B1","C1","D1","E1","F1","A2","B2","C2","D2",
