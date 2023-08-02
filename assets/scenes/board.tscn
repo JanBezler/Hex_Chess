@@ -19,9 +19,10 @@ sources/1 = SubResource("TileSetAtlasSource_nnjg3")
 [sub_resource type="LabelSettings" id="LabelSettings_hf0oi"]
 font_size = 18
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("background")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("background", "tile_map")]
 script = ExtResource("1_6c6ey")
 background = NodePath("Polygon2D/ColorRect")
+tile_map = NodePath("TileMap")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(50, 348)

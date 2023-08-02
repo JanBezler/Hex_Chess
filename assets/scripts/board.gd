@@ -2,6 +2,7 @@ extends Node2D
 class_name Board
 
 @export var background: ColorRect
+@export var tile_map: TileMap
 @export var color_white: Color
 @export var color_black: Color
 
@@ -23,7 +24,7 @@ var side: float
 var height: float
 
 func _ready():
-	side = $TileMap.tile_set.tile_size[0] / 2.0
+	side = tile_map.tile_set.tile_size[0] / 2.0
 	height = side * sqrt(3) / 2.0
 	create_map()
 
@@ -45,11 +46,8 @@ func create_map():
 			y += height
 
 func get_field_position(chr: String, num: int = 0) -> Vector2:
-	if len(chr) == 1 and num in range(1,12):	
-		return board[num-1][chr.capitalize()]
-	elif len(chr) in range(2,4) and num == 0:
-		return board[int(chr.right(len(chr)-1))-1][chr[0].capitalize()]
-	return Vector2(0,0)
+	var kv = Utils.to_kv(chr, num)
+	return board[kv[1]][kv[0]]
 
 func which_field_clicked(coords: Vector2) -> String:
 	for row in len(board):
