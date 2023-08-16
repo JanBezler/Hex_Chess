@@ -6,9 +6,20 @@ class_name Figures
 @export var check_marker_color: Color 
 @export var line_texture: Texture2D
 @export var figure_sprite: Texture2D
+@export var marker_radius: float
 
 var figure_sprites_parent := Node2D.new()
 var marker_sprites_parent := Node2D.new()
+var check_marker: Line2D
+
+func _ready():
+	check_marker = create_marker(check_marker_color)
+	check_marker.visible = false
+	add_child(check_marker)
+
+func set_check_market_to(field: String, can_see: bool):
+	check_marker.position = (board.get_field_position(field))
+	check_marker.visible = can_see
 
 func draw_figures(state_table: Array):
 	var new_sprites_parent := Node2D.new()
@@ -30,7 +41,7 @@ func draw_figures(state_table: Array):
 func draw_markers(fields: Array):
 	var new_sprites_parent := Node2D.new()
 	for field in fields:
-		var marker = create_marker(70)
+		var marker = create_marker()
 		marker.translate(board.get_field_position(field))
 		new_sprites_parent.add_child(marker)
 		
@@ -64,16 +75,16 @@ func get_figure_sprite(fig_name: String) -> Sprite2D:
 	sprite.frame = frame_num
 	return sprite
 
-func create_marker(radius: float, color: Color = Color.BLACK) -> Line2D:
-	var height = radius*sqrt(3)/2
+func create_marker(color: Color = Color.BLACK) -> Line2D:
+	var height = marker_radius*sqrt(3)/2
 	var line = Line2D.new()
 	line.add_point(Vector2(0, height))
-	line.add_point(Vector2(radius/2, height))
-	line.add_point(Vector2(radius, 0))
-	line.add_point(Vector2(radius/2, -height))
-	line.add_point(Vector2(-radius/2, -height))
-	line.add_point(Vector2(-radius, 0))
-	line.add_point(Vector2(-radius/2, height))
+	line.add_point(Vector2(marker_radius/2, height))
+	line.add_point(Vector2(marker_radius, 0))
+	line.add_point(Vector2(marker_radius/2, -height))
+	line.add_point(Vector2(-marker_radius/2, -height))
+	line.add_point(Vector2(-marker_radius, 0))
+	line.add_point(Vector2(-marker_radius/2, height))
 	line.add_point(Vector2(0, height))
 	line.width = 20
 	line.texture = line_texture

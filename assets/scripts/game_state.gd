@@ -22,6 +22,7 @@ var checked_field := ""
 var showed_markers := []
 var is_black_turn := false
 var enemy_possible_moves := []
+var checked_king_field := "F6"
 
 func _ready():
 	figures.draw_figures(state_table)
@@ -58,16 +59,15 @@ func next_turn():
 	enemy_possible_moves = all_possible_moves(!is_black_turn)
 	if is_in_check():
 		if is_in_checkmate():
-			if is_in_stealmate():
-				print("STEALMATE!")
-			else:
-				print("CHECKMATE!")
+			print("CHECKMATE!")
 		else:
 			print("CHECK!")
-	
+			figures.set_check_market_to(checked_king_field, true)
+	else:
+		figures.set_check_market_to(checked_king_field, false)
 		
 
-func get_possible_moves(from_field: String, only_attack:bool = false) -> Array:
+func get_possible_moves(from_field: String, only_attack: bool = false) -> Array:
 	var figure := what_figure_at(from_field)
 	if !from_field.is_empty() and !figure.is_empty():
 		if Utils.is_pawn(figure):
@@ -120,6 +120,7 @@ func is_in_check(speific_enemy_possible_moves: Array = []) -> bool:
 	for field in speific_enemy_possible_moves:
 		var figure = what_figure_at(field)
 		if figure != "" and Utils.is_king(figure) and Utils.is_black(figure) == is_black_turn:
+			checked_king_field = field
 			return true
 	return false
 	
