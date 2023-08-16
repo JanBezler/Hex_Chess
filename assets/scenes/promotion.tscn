@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://be1f4b50dwc1l"]
+
+[ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="1_q2hkq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nid4"]
+font_size = 22
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75uwy"]
+resource_local_to_scene = true
+atlas = ExtResource("1_q2hkq")
+region = Rect2(463, 21, 112, 112)
+margin = Rect2(4, 4, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq1hw"]
+resource_local_to_scene = true
+atlas = ExtResource("1_q2hkq")
+region = Rect2(314, 16, 115, 116)
+margin = Rect2(4, 4, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g56s"]
+resource_local_to_scene = true
+atlas = ExtResource("1_q2hkq")
+region = Rect2(622, 28, 95, 105)
+margin = Rect2(4, 4, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gtkt"]
+resource_local_to_scene = true
+atlas = ExtResource("1_q2hkq")
+region = Rect2(159, 16, 128, 118)
+margin = Rect2(4, 4, 8, 8)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 660.0
+offset_bottom = 222.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Choose what do you want the pawn to be promoted to:"
+label_settings = SubResource("LabelSettings_3nid4")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Knight" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+icon = SubResource("AtlasTexture_75uwy")
+icon_alignment = 1
+
+[node name="Bishop" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+icon = SubResource("AtlasTexture_lq1hw")
+icon_alignment = 1
+
+[node name="Rook" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+icon = SubResource("AtlasTexture_5g56s")
+icon_alignment = 1
+
+[node name="Queen" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+icon = SubResource("AtlasTexture_8gtkt")
+icon_alignment = 1
