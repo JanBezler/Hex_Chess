@@ -89,5 +89,38 @@ static func field_diag_down_right(field: String) -> String:
 static func field_diag_down_left(field: String) -> String:
 	var kv := to_kv(field)
 	return return_existing(char_down(kv[0]) + str(kv[1] - 1))
+
+static func deep_copy(object):
+	if object is Array:
+		return deep_copy_array(object)
+	elif object is Dictionary:
+		return deep_copy_dict(object)
+	else:
+		return object.duplicate()
+
+static func deep_copy_array(arr):
+	var copied_arr = []
 	
+	for item in arr:
+		if item is Array:
+			copied_arr.append(deep_copy_array(item))
+		elif item is Dictionary:
+			copied_arr.append(deep_copy_dict(item))
+		else:
+			copied_arr.append(item)
 	
+	return copied_arr
+	
+static func deep_copy_dict(dict):
+	var copied_dict = {}
+
+	for key in dict.keys():
+		var value = dict[key]
+		if value is Array:
+			copied_dict[key] = deep_copy_array(value)
+		elif value is Dictionary:
+			copied_dict[key] = deep_copy_dict(value)
+		else:
+			copied_dict[key] = value
+
+	return copied_dict
