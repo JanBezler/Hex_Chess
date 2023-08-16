@@ -2,7 +2,8 @@ extends Node2D
 class_name Figures
 
 @export var board: Board
-@export var marker_color: Color
+@export var default_marker_color: Color #fefb327f
+@export var check_marker_color: Color 
 @export var line_texture: Texture2D
 @export var figure_sprite: Texture2D
 
@@ -63,7 +64,7 @@ func get_figure_sprite(fig_name: String) -> Sprite2D:
 	sprite.frame = frame_num
 	return sprite
 
-func create_marker(radius: float) -> Line2D:
+func create_marker(radius: float, color: Color = Color.BLACK) -> Line2D:
 	var height = radius*sqrt(3)/2
 	var line = Line2D.new()
 	line.add_point(Vector2(0, height))
@@ -74,10 +75,13 @@ func create_marker(radius: float) -> Line2D:
 	line.add_point(Vector2(-radius, 0))
 	line.add_point(Vector2(-radius/2, height))
 	line.add_point(Vector2(0, height))
-	line.default_color = Color(0.996078, 0.984314, 0.196078, 0.5)
 	line.width = 20
 	line.texture = line_texture
 	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	line.joint_mode = Line2D.LINE_JOINT_ROUND
 	line.antialiased = true
+	if color == Color.BLACK:
+		line.default_color = default_marker_color
+	else:
+		line.default_color = color
 	return line

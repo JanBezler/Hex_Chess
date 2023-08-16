@@ -18,6 +18,8 @@ color_black = Color(0.20871, 0.20871, 0.20871, 1)
 [node name="Figures" type="Node2D" parent="." node_paths=PackedStringArray("board")]
 script = ExtResource("2_ycgru")
 board = NodePath("../Board")
+default_marker_color = Color(0.996078, 0.984314, 0.196078, 0.498039)
+check_marker_color = Color(0.937255, 0, 0, 0.498039)
 line_texture = ExtResource("3_bbqgy")
 figure_sprite = ExtResource("4_fipi1")
 
