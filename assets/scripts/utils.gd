@@ -25,6 +25,24 @@ static func to_str(chr: String, num: int = 0) -> String:
 static func is_black(figName: String) -> bool:
 	return figName[0].to_lower() == "b"
 
+static func is_pawn(figName: String) -> bool:
+	return figName[1].to_upper() == "P"
+
+static func is_knight(figName: String) -> bool:
+	return figName[1].to_upper() == "K"
+
+static func is_bishop(figName: String) -> bool:
+	return figName[1].to_upper() == "B"
+
+static func is_rook(figName: String) -> bool:
+	return figName[1].to_upper() == "R"
+
+static func is_queen(figName: String) -> bool:
+	return figName[1].to_upper() == "Q"
+
+static func is_king(figName: String) -> bool:
+	return figName[1].to_upper() == "G"
+
 static func field_exist(field: String) -> bool:
 	return field in all_fields
 
