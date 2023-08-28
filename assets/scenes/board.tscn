@@ -17,7 +17,7 @@ tile_size = Vector2i(200, 174)
 sources/1 = SubResource("TileSetAtlasSource_nnjg3")
 
 [sub_resource type="LabelSettings" id="LabelSettings_hf0oi"]
-font_size = 18
+font_size = 34
 
 [node name="Board" type="Node2D" node_paths=PackedStringArray("background", "tile_map")]
 script = ExtResource("1_6c6ey")
@@ -49,201 +49,200 @@ scale = Vector2(1, -1.20645)
 
 [node name="Labels" type="Node2D" parent="."]
 z_index = 1
-scale = Vector2(2, 2)
 
 [node name="A" type="Label" parent="Labels"]
-offset_left = -396.0
-offset_top = 260.0
-offset_right = -356.0
-offset_bottom = 286.0
+offset_left = -768.0
+offset_top = 520.0
+offset_right = -728.0
+offset_bottom = 570.0
 text = "A"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="B" type="Label" parent="Labels"]
-offset_left = -320.0
-offset_top = 303.0
-offset_right = -280.0
-offset_bottom = 329.0
+offset_left = -616.0
+offset_top = 608.0
+offset_right = -576.0
+offset_bottom = 658.0
 text = "B"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="C" type="Label" parent="Labels"]
-offset_left = -245.0
-offset_top = 347.0
-offset_right = -205.0
-offset_bottom = 373.0
+offset_left = -464.0
+offset_top = 696.0
+offset_right = -424.0
+offset_bottom = 746.0
 text = "C"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="D" type="Label" parent="Labels"]
-offset_left = -170.0
-offset_top = 390.0
-offset_right = -130.0
-offset_bottom = 416.0
+offset_left = -312.0
+offset_top = 784.0
+offset_right = -272.0
+offset_bottom = 834.0
 text = "D"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="E" type="Label" parent="Labels"]
-offset_left = -96.0
-offset_top = 434.0
-offset_right = -56.0
-offset_bottom = 460.0
+offset_left = -160.0
+offset_top = 872.0
+offset_right = -120.0
+offset_bottom = 922.0
 text = "E"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="K" type="Label" parent="Labels"]
-offset_left = 354.0
-offset_top = 260.0
-offset_right = 394.0
-offset_bottom = 286.0
+offset_left = 728.0
+offset_top = 520.0
+offset_right = 768.0
+offset_bottom = 570.0
 text = "K"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="J" type="Label" parent="Labels"]
-offset_left = 279.0
-offset_top = 303.0
-offset_right = 319.0
-offset_bottom = 329.0
+offset_left = 584.0
+offset_top = 608.0
+offset_right = 624.0
+offset_bottom = 658.0
 text = "J"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="I" type="Label" parent="Labels"]
-offset_left = 204.0
-offset_top = 347.0
-offset_right = 244.0
-offset_bottom = 373.0
+offset_left = 432.0
+offset_top = 696.0
+offset_right = 472.0
+offset_bottom = 746.0
 text = "I"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="H" type="Label" parent="Labels"]
-offset_left = 128.0
-offset_top = 390.0
-offset_right = 168.0
-offset_bottom = 416.0
+offset_left = 280.0
+offset_top = 784.0
+offset_right = 320.0
+offset_bottom = 834.0
 text = "H"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="G" type="Label" parent="Labels"]
-offset_left = 54.0
-offset_top = 434.0
-offset_right = 94.0
-offset_bottom = 460.0
+offset_left = 128.0
+offset_top = 872.0
+offset_right = 168.0
+offset_bottom = 922.0
 text = "G"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="F" type="Label" parent="Labels"]
 offset_left = -21.0
-offset_top = 477.0
+offset_top = 960.0
 offset_right = 19.0
-offset_bottom = 503.0
+offset_bottom = 1010.0
 text = "F"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="1" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_top = 174.0
-offset_right = -401.0
-offset_bottom = 200.0
+offset_left = -864.0
+offset_top = 348.0
+offset_right = -824.0
+offset_bottom = 398.0
 text = "1"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="2" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_top = 87.0
-offset_right = -401.0
-offset_bottom = 113.0
+offset_left = -864.0
+offset_top = 168.0
+offset_right = -824.0
+offset_bottom = 218.0
 text = "2"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="3" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_right = -401.0
-offset_bottom = 26.0
+offset_left = -864.0
+offset_right = -824.0
+offset_bottom = 50.0
 text = "3"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="4" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_top = -87.0
-offset_right = -401.0
-offset_bottom = -61.0
+offset_left = -864.0
+offset_top = -176.0
+offset_right = -824.0
+offset_bottom = -126.0
 text = "4"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="5" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_top = -173.0
-offset_right = -401.0
-offset_bottom = -147.0
+offset_left = -864.0
+offset_top = -352.0
+offset_right = -824.0
+offset_bottom = -302.0
 text = "5"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="6" type="Label" parent="Labels"]
-offset_left = -441.0
-offset_top = -261.0
-offset_right = -401.0
-offset_bottom = -235.0
+offset_left = -864.0
+offset_top = -528.0
+offset_right = -824.0
+offset_bottom = -478.0
 text = "6"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="7" type="Label" parent="Labels"]
-offset_left = -366.0
-offset_top = -304.0
-offset_right = -326.0
-offset_bottom = -278.0
+offset_left = -720.0
+offset_top = -600.0
+offset_right = -680.0
+offset_bottom = -550.0
 text = "7"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="8" type="Label" parent="Labels"]
-offset_left = -291.0
-offset_top = -348.0
-offset_right = -251.0
-offset_bottom = -322.0
+offset_left = -568.0
+offset_top = -688.0
+offset_right = -528.0
+offset_bottom = -638.0
 text = "8"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="9" type="Label" parent="Labels"]
-offset_left = -216.0
-offset_top = -392.0
-offset_right = -176.0
-offset_bottom = -366.0
+offset_left = -424.0
+offset_top = -776.0
+offset_right = -384.0
+offset_bottom = -726.0
 text = "9"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="10" type="Label" parent="Labels"]
-offset_left = -146.0
-offset_top = -436.0
-offset_right = -106.0
-offset_bottom = -410.0
+offset_left = -278.0
+offset_top = -859.0
+offset_right = -238.0
+offset_bottom = -809.0
 text = "10"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1
 
 [node name="11" type="Label" parent="Labels"]
-offset_left = -71.0
-offset_top = -479.0
-offset_right = -31.0
-offset_bottom = -453.0
+offset_left = -124.0
+offset_top = -957.0
+offset_right = -84.0
+offset_bottom = -907.0
 text = "11"
 label_settings = SubResource("LabelSettings_hf0oi")
 horizontal_alignment = 1

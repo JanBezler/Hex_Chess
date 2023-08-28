@@ -58,10 +58,11 @@ texture = ExtResource("3_7bemr")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 1936.0
-offset_bottom = 1096.0
+offset_left = -1024.0
+offset_top = -1416.0
+offset_right = 928.0
+offset_bottom = -304.0
+scale = Vector2(2.09068, 3.77956)
 color = Color(0.239216, 0.439216, 0.184314, 1)
 
 [connection signal="pressed" from="Node/Exit" to="Node/Exit" method="_on_pressed"]

@@ -10,7 +10,6 @@
 [node name="MainScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 
 [node name="Board" parent="." instance=ExtResource("1_bwvsc")]
 color_white = Color(0.72549, 0.72549, 0.72549, 1)
@@ -32,9 +31,9 @@ figures = NodePath("../Figures")
 promotion = NodePath("../Promotion")
 
 [node name="Promotion" parent="." instance=ExtResource("6_uxieh")]
-offset_left = -534.0
-offset_top = -204.0
-offset_right = -534.0
-offset_bottom = -204.0
+offset_left = -495.0
+offset_top = -203.0
+offset_right = -495.0
+offset_bottom = -203.0
 
 [connection signal="hidden" from="Promotion" to="Game_state" method="_on_promotion_hidden"]
