@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://be1f4b50dwc1l"]
+[gd_scene load_steps=8 format=3 uid="uid://be1f4b50dwc1l"]
 
 [ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="1_q2hkq"]
+[ext_resource type="Script" path="res://assets/scripts/promotion.gd" id="1_ylsul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nid4"]
 font_size = 22
@@ -36,6 +37,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.61532, 1.61532)
+script = ExtResource("1_ylsul")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -83,3 +86,8 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 icon = SubResource("AtlasTexture_8gtkt")
 icon_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Knight" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Bishop" to="." method="_on_bishop_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Rook" to="." method="_on_rook_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Queen" to="." method="_on_queen_pressed"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqtuwx6fpyvx"]
+[gd_scene load_steps=7 format=3 uid="uid://dqtuwx6fpyvx"]
 
 [ext_resource type="PackedScene" uid="uid://0pydxxwsnine" path="res://assets/scenes/board.tscn" id="1_bwvsc"]
 [ext_resource type="Script" path="res://assets/scripts/figures.gd" id="2_ycgru"]
 [ext_resource type="Texture2D" uid="uid://f3j6de0el2in" path="res://assets/textures/center_linear_gradient.tres" id="3_bbqgy"]
 [ext_resource type="Script" path="res://assets/scripts/game_state.gd" id="3_y0vha"]
 [ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="4_fipi1"]
+[ext_resource type="PackedScene" uid="uid://be1f4b50dwc1l" path="res://assets/scenes/promotion.tscn" id="6_uxieh"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -24,7 +25,16 @@ line_texture = ExtResource("3_bbqgy")
 figure_sprite = ExtResource("4_fipi1")
 marker_radius = 70.0
 
-[node name="Game_state" type="Node" parent="." node_paths=PackedStringArray("board", "figures")]
+[node name="Game_state" type="Node" parent="." node_paths=PackedStringArray("board", "figures", "promotion")]
 script = ExtResource("3_y0vha")
 board = NodePath("../Board")
 figures = NodePath("../Figures")
+promotion = NodePath("../Promotion")
+
+[node name="Promotion" parent="." instance=ExtResource("6_uxieh")]
+offset_left = -534.0
+offset_top = -204.0
+offset_right = -534.0
+offset_bottom = -204.0
+
+[connection signal="hidden" from="Promotion" to="Game_state" method="_on_promotion_hidden"]

@@ -3,6 +3,7 @@ class_name GameState
 
 @export var board: Board
 @export var figures: Figures
+@export var promotion: Promotion
 
 var state_table := [
 	{"A":"","B":"wP","C":"wR","D":"wK","E":"wQ","F":"wB"}, #1
@@ -23,26 +24,34 @@ var showed_markers := []
 var is_black_turn := false
 var enemy_possible_moves := []
 var checked_king_field := "F6"
+var choose_promotion := false
+var field_to_promote := ""
 
 func _ready():
+	promotion.hide()
 	figures.draw_figures(state_table)
 	board.set_background_color(false)
 
 func _process(_delta):
-	if Input.is_action_just_pressed("mouse_left"):
-		var mouse_position := get_viewport().get_camera_2d().get_global_mouse_position()
-		var field_clicked = board.which_field_clicked(mouse_position)
-		var figure_clicked = what_figure_at(field_clicked)
-		var is_figure_clicked = figure_clicked != ""
+	if !choose_promotion:
+		if Input.is_action_just_pressed("mouse_left"):
+			var mouse_position := get_viewport().get_camera_2d().get_global_mouse_position()
+			var field_clicked = board.which_field_clicked(mouse_position)
+			var figure_clicked = what_figure_at(field_clicked)
+			var is_figure_clicked = figure_clicked != ""
 
-		if field_clicked in showed_markers:
-			move_figure(checked_field, field_clicked)
-			next_turn()
-				
-		elif is_figure_clicked and (is_black_turn == Utils.is_black(figure_clicked)):
-			showed_markers = get_possible_moves(field_clicked)
-			figures.draw_markers(showed_markers)
-			checked_field = field_clicked
+			if field_clicked in showed_markers:
+				move_figure(checked_field, field_clicked)
+				for field in Utils.all_fields:
+					if is_pawn_promoted(field):
+						promotion.show()
+						choose_promotion = true
+				next_turn()
+					
+			elif is_figure_clicked and (is_black_turn == Utils.is_black(figure_clicked)):
+				showed_markers = get_possible_moves(field_clicked)
+				figures.draw_markers(showed_markers)
+				checked_field = field_clicked
 
 
 func next_turn():
@@ -123,8 +132,8 @@ func is_in_check(speific_enemy_possible_moves: Array = []) -> bool:
 			checked_king_field = field
 			return true
 	return false
-	
-func is_in_checkmate() -> bool:
+
+func is_in_checkmate() -> bool: # nie działa poprawnie zawsze
 	var state_table_before = Utils.deep_copy(state_table)
 	for fig_field in Utils.all_fields:
 		var figure = what_figure_at(fig_field)
@@ -132,9 +141,6 @@ func is_in_checkmate() -> bool:
 			for possible_field in get_possible_moves(fig_field):
 				move_figure(fig_field, possible_field)
 				var is_chceckmate := is_in_check()
-				if !is_chceckmate:
-					if Utils.is_king(figure) and Utils.is_black(figure) == is_black_turn:
-						is_chceckmate = is_in_check(all_possible_moves(!is_black_turn))
 				state_table = Utils.deep_copy(state_table_before)
 				if not is_chceckmate:	
 					return false
@@ -144,20 +150,37 @@ func is_in_checkmate() -> bool:
 func is_in_stealmate() -> bool:
 	return false
 
+func is_pawn_promoted(str_pos: String) -> bool:
+	var figure = what_figure_at(str_pos)
+	if figure != "" and Utils.is_pawn(figure):
+		var field_kv = Utils.to_kv(str_pos)
+		if Utils.is_black(figure):		
+			for field in Utils.starting_black:
+				if Utils.to_kv(field)[0] == field_kv[0]:
+					if Utils.to_kv(field)[1] - 6 == field_kv[1]:
+						field_to_promote = str_pos
+						return true
+		else:
+			for field in Utils.starting_white:
+				if Utils.to_kv(field)[0] == field_kv[0]:
+					if Utils.to_kv(field)[1] + 6 == field_kv[1]:
+						print(str_pos, field)
+						field_to_promote = str_pos
+						return true
+	return false
+
 
 # MOVES CHECKING
 
 func pawn_possible_moves(str_pos: String) -> Array:
 	var possible_fields := []
-	var starting_white := ["B1", "C2", "D3", "E4", "F5", "G5", "H5", "I5", "J5"]
-	var starting_black := ["B7", "C7", "D7", "E7", "F7", "G8", "H9", "I10", "J11"]
 	var is_black := Utils.is_black(what_figure_at(str_pos))
 	
 	if is_black:
 		var next = Utils.field_down(str_pos)
 		if what_figure_at(next).is_empty():
 			possible_fields.append(next)
-			if str_pos in starting_black:
+			if str_pos in Utils.starting_black:
 				next = Utils.field_down(next)
 				if what_figure_at(next).is_empty():
 					possible_fields.append(next)
@@ -166,7 +189,7 @@ func pawn_possible_moves(str_pos: String) -> Array:
 		var next = Utils.field_up(str_pos)
 		if what_figure_at(next).is_empty():
 			possible_fields.append(next)
-			if  str_pos in starting_white:
+			if  str_pos in Utils.starting_white:
 				next = Utils.field_up(next)
 				if what_figure_at(next).is_empty():
 					possible_fields.append(next)
@@ -389,13 +412,27 @@ func king_possible_moves(str_pos: String) -> Array:
 
 	return real_possible_fields
 
-func all_possible_moves(for_black: bool) -> Array:
+func all_possible_moves(for_black: bool, only_attack: bool = true) -> Array:
 	var possible_fields := []
 	for field in Utils.all_fields:
 		var figure = what_figure_at(field)
 		if figure != "" and (Utils.is_black(figure) == for_black):
-			possible_fields.append_array(get_possible_moves(field, true))
+			possible_fields.append_array(get_possible_moves(field, only_attack))
 			
 	return possible_fields
 			
 
+func _on_promotion_hidden():
+	if choose_promotion:
+		var figure_new = promotion.get_chosen_fugure()
+		if Utils.is_black(what_figure_at(field_to_promote)):
+			figure_new = "b" + figure_new
+		else:
+			figure_new = "w" + figure_new
+		var field_kv = Utils.to_kv(field_to_promote)
+		state_table[field_kv[1]][field_kv[0]] = figure_new
+		figures.draw_figures(state_table)
+		field_to_promote = ""
+		choose_promotion = false
+		
+		
