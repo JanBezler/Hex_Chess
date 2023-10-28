@@ -4,6 +4,7 @@ class_name GameState
 @export var board: Board
 @export var figures: Figures
 @export var promotion: Promotion
+@export var checkmate_scene: CheckmateScene
 
 var state_table := [
 	{"A":"","B":"wP","C":"wR","D":"wK","E":"wQ","F":"wB"}, #1
@@ -29,6 +30,7 @@ var field_to_promote := ""
 
 func _ready():
 	promotion.hide()
+	checkmate_scene.hide()
 	figures.draw_figures(state_table)
 	board.set_background_color(false)
 
@@ -68,9 +70,9 @@ func next_turn():
 	enemy_possible_moves = all_possible_moves(!is_black_turn)
 	if is_in_check():
 		if is_in_checkmate():
-			print("CHECKMATE!")
+			checkmate_scene.set_winner(!is_black_turn)
+			checkmate_scene.show()
 		else:
-			print("CHECK!")
 			figures.set_check_market_to(checked_king_field, true)
 	else:
 		figures.set_check_market_to(checked_king_field, false)
@@ -142,7 +144,7 @@ func is_in_checkmate() -> bool: # nie działa poprawnie zawsze
 				move_figure(fig_field, possible_field)
 				var is_chceckmate := is_in_check()
 				state_table = Utils.deep_copy(state_table_before)
-				if not is_chceckmate:	
+				if not is_chceckmate:
 					return false
 	state_table = Utils.deep_copy(state_table_before)
 	return true

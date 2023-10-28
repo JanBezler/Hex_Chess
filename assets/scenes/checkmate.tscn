@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://doxe6ovio2ygv"]
+
+[ext_resource type="Script" path="res://assets/scripts/checkmate_scene.gd" id="1_cbfpc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nid4"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_dr2bb"]
+font_size = 55
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cbfpc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 660.0
+offset_bottom = 288.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Checkmate!"
+label_settings = SubResource("LabelSettings_3nid4")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = " player wins!"
+label_settings = SubResource("LabelSettings_dr2bb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="PlayAgainButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Play again"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit game"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

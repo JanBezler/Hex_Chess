@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqtuwx6fpyvx"]
+[gd_scene load_steps=8 format=3 uid="uid://dqtuwx6fpyvx"]
 
 [ext_resource type="PackedScene" uid="uid://0pydxxwsnine" path="res://assets/scenes/board.tscn" id="1_bwvsc"]
 [ext_resource type="Script" path="res://assets/scripts/figures.gd" id="2_ycgru"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/scripts/game_state.gd" id="3_y0vha"]
 [ext_resource type="Texture2D" uid="uid://bb82e1ur5wvyw" path="res://assets/images/figures.png" id="4_fipi1"]
 [ext_resource type="PackedScene" uid="uid://be1f4b50dwc1l" path="res://assets/scenes/promotion.tscn" id="6_uxieh"]
+[ext_resource type="PackedScene" uid="uid://doxe6ovio2ygv" path="res://assets/scenes/checkmate.tscn" id="7_ed6dd"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -24,16 +25,23 @@ line_texture = ExtResource("3_bbqgy")
 figure_sprite = ExtResource("4_fipi1")
 marker_radius = 70.0
 
-[node name="Game_state" type="Node" parent="." node_paths=PackedStringArray("board", "figures", "promotion")]
+[node name="Game_state" type="Node" parent="." node_paths=PackedStringArray("board", "figures", "promotion", "checkmate_scene")]
 script = ExtResource("3_y0vha")
 board = NodePath("../Board")
 figures = NodePath("../Figures")
 promotion = NodePath("../Promotion")
+checkmate_scene = NodePath("../CheckmateScene")
 
 [node name="Promotion" parent="." instance=ExtResource("6_uxieh")]
 offset_left = -495.0
 offset_top = -203.0
 offset_right = -495.0
 offset_bottom = -203.0
+
+[node name="CheckmateScene" parent="." instance=ExtResource("7_ed6dd")]
+offset_left = -350.0
+offset_top = -168.0
+offset_right = -350.0
+offset_bottom = -168.0
 
 [connection signal="hidden" from="Promotion" to="Game_state" method="_on_promotion_hidden"]

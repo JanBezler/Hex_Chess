@@ -24,3 +24,4 @@ func get_chosen_fugure() -> String:
 
 func hide_panel():
 	hide()
+
